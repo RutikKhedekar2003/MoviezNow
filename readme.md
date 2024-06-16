@@ -1,60 +1,54 @@
-# Movie Booking web-app
+# MoviezNow
 
-### Tech Stack
-Nodejs, Express, MySql, JQuery
-
----
-### Preinstallation Steps
-1. install nvm source:https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/
-2. install nodejs(version=10.17.0) using nvm.(command: `nvm install 10.17.0`)  
-3. **install mysql (version = 5.7)**  
-	sources:a.https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04  
-		b. https://blog.zedfox.us/install-mysql-5-7-windows-10/  
-4. **Install redis server**.  
-  	a. **for windows 10:**  
-   	   i. https://github.com/microsoftarchive/redis/releases/download/win-3.0.504/Redis-x64-3.0.504.zip) (download this zipfile)   
-           ii. follow the instructions from this site from step 2:  
-	      https://riptutorial.com/redis/example/29962/installing-and-running-redis-server-on-windows  
-	
-  	b. **for Ubuntu:** https://codeforgeek.com/node-js-redis-tutorial-installation-commands/  
-   			
----
-### Installation Steps
-
-1. Complete the **_preinstallations steps mentioned above_**.   
-2. `git clone <repository link> `  
-3. `cd movie_booking_application `  
-4. `npm install`  
-5. **In the 'app.js' file update the following lines(for Mysql) according to your mysql'password'**  
-
-    host: 'localhost',  
-    user: 'root',	//mysql username  
-    password : ' ',	// type the mysql password which you have set.  
-    database:'booking_movies'	// mysql database name  
- 
-6. Open your terminal(linux/mac-os) or CMD(windows) for mysql and type the below 2 commands.  
-	NOTE: Here, the password asked will be of your MySQL.  
-    1. `mysql -u root -p -e "create database booking_movies"`  
-    2. `mysql -u root -p booking_movies < database.sql`    
-
-7. And now open another terminal-tab for starting the nodejs server.  
-	Command: `node app.js`	(Now,the node-server will start at port:3000)  
-8. Lastly,open your Browser and enter this URL: `localhost:3000/home`  
----
-
-### Version of all the softwares.  
-	Note:All the '*' must have the mentioned version installed in your computer.   
-	
-	*mysql = 5.7	  
-	*nodejs = 10.17.0  
-	 redis = 3.0.6  
-
----
-<!-- ## Useful Commands.
-### command to stop the redis-server(for linux only.)  
-	`/etc/init.d/redis-server stop`  
-
-### command to list all the redis keys  
-1. `keys *`  
-2. `get <keyname(session)>`   -->
-
+Welcome to the Movie Seat Booking Application! This simple web application allows users to select movie seats and proceed to a payment page. It includes features like seat selection, pricing differentiation between stall and balcony seats, and dynamic calculation of total price based on seat selection.
+Features
+Seat Selection: Users can click on available seats to select them. Occupied seats and already selected seats are visually indicated.
+Pricing: Seats in the balcony section are priced higher than those in the stall section. The price is dynamically calculated based on the seats selected.
+Persistence: Selected seats are stored in the browser's localStorage, ensuring that users can return to the page and still see their selected seats.
+Book Now Button: When users are ready to book, they can click on the "Book Now" button which calculates the total price and redirects them to a payment page.
+Setup
+To run the Movie Seat Booking Application locally or on a server, follow these steps:
+Clone the Repository:
+bash
+Copy code
+git clone <repository_url>
+Navigate to the Project Directory:
+bash
+Copy code
+cd movieznow
+Open localhost/movieznow/public/register.html in a Web Browser:
+Simply open the index.html file in your preferred web browser (Chrome, Firefox, etc.).
+Explore and Use the Application:
+Select seats by clicking on them.
+Watch as the selected seats count and total price update dynamically.
+Click on the "Book Now" button to proceed to the payment page.
+Technologies Used
+HTML5
+CSS3 (with minimal styling framework)
+JavaScript
+PHP
+MySQL 8.0
+Directory Structure
+The project directory structure is organized as follows:
+Copy code
+movieznow/
+│
+├── css/
+│   ├── seats.css
+│   └── osahan.min.css
+│
+├── img/
+│   └── screen-thumb.png
+│
+├── js/
+│   └── seats.js
+│
+├── index.html
+└── README.md
+css/: Contains CSS stylesheets used for the application.
+img/: Stores images, such as the movie screen image used in the application.
+js/: Includes JavaScript files, specifically seats.js which handles the main logic of seat selection and pricing.
+Additional Notes
+Browser Compatibility: The application is designed to work on modern web browsers like Chrome, Firefox, Safari, and Edge. Compatibility with older browsers may vary.
+LocalStorage Usage: The application uses localStorage to store selected and booked seat information. Ensure that the browser has localStorage enabled for the best user experience.
+Customization: You can customize the application further by modifying the CSS styles in seats.css and osahan.min.css to match your desired theme or branding.

@@ -1,118 +1,81 @@
-//let bs1;
-//function onLoaderFunc(seats)
-//{
-////  $(".seatStructure *").prop("disabled", true);
-//  $(".displayerBoxes *").prop("disabled", true);
-//    bs1 = seats;
-//    console.log("length of the returned array:",typeof(seats));
-//    selectedSeats(seats);
-//    //$("input:unchecked").prop("disabled",true);
-//
-//}
-//
-//function selectedSeats(seats)
-//{
-//    let i=0,n=seats.length;
-//    for(i=0;i<n;i++)
-//    {
-//        //let val = $("table").find("input[value=" + seats[i].sid + "]")
-//        //input[value=" + seats[i] + "]
-//        $("input[value=" + seats[i].sid + "]").attr("checked",true);
-//        $("input[value=" + seats[i].sid + "]").prop("disabled",true);
-//    }
-//}
+const seats = document.querySelectorAll(".row .seat:not(.occupied)");
+const seatContainer = document.querySelector(".row-container");
+const count = document.getElementById("count");
+const total = document.getElementById("total");
+const bookNowBtn = document.getElementById("book-now-btn");
 
-function takeData()
-{
-//  if (( $("#Username").val().length == 0 ) || ( $("#Numseats").val().length == 0 ))
-   if ( $("#Numseats").val().length <= 0)
-  {
-  	alert("Please Enter Number of Seats");
-  }
-  else
-  {
-//      input:unchecked
-       //$("input:checkbox:not(:checked)").prop("disabled",false);
-//    $(".inputForm *").prop("disabled", true);
-    //$(".seatStructure *").prop("disabled", false);
-    document.getElementById("notification").innerHTML = "<b style='margin-bottom:0px;background:white;color:green'>Please Select your Seats NOW!</b>";
+populateUI();
 
-  }
+// Set default ticket price
+const ticketPrice = 150;
+const addBalcony = 50;
+
+function updateSelectedCount() {
+  const selectedSeats = document.querySelectorAll(".container .selected");
+  const seatsIndex = [...selectedSeats].map(function(seat) {
+    return [...seats].indexOf(seat);
+  });
+
+  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+
+  // Update local storage for booked seats
+  const bookedSeats = document.querySelectorAll(".container .occupied");
+  const bookedSeatsIndex = [...bookedSeats].map(function(seat) {
+    return [...seats].indexOf(seat);
+  });
+
+  localStorage.setItem("bookedSeats", JSON.stringify(bookedSeatsIndex));
+
+  let selectedSeatsCount = selectedSeats.length;
+  let totalPrice = 0;
+  
+  selectedSeats.forEach(function(seat) {
+    let price = ticketPrice;
+    if (seat.parentElement.classList.contains('balcony')) {
+      price += addBalcony;
+    }
+    totalPrice += price;
+  });
+
+  count.textContent = selectedSeatsCount;
+  total.textContent = totalPrice;
+
+  // Update the href attribute of the "Book Now" button
+  const paymentPageUrl = `./payment.html?total=${totalPrice}`;
+  bookNowBtn.setAttribute("href", paymentPageUrl);
 }
-let seatDetails={};
 
-function updateTextArea() {
-  let price  = $('#seat-type option:selected').val();
-  if ($("input:checked").length == ($("#Numseats").val()))
-    {
-      // $(".seatStructure *").prop("disabled", true);
+// Get data from localstorage and populate
+function populateUI() {
+  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+  const bookedSeats = JSON.parse(localStorage.getItem("bookedSeats"));
 
-//     var allNameVals = [];
-     let allNumberVals = [];
-     let allSeatsVals = [];
-
-     //Storing in Array
-//     allNameVals.push($("#Username").val());
-     allNumberVals.push($("#Numseats").val());
-     $('#seatsBlock :checked').each(function() {
-       allSeatsVals.push($(this).val());
-     });
-
-     //Displaying
-//     $('#nameDisplay').val(allNameVals);
-     $('#NumberDisplay').val(allNumberVals);
-     $('#seatsDisplay').val(allSeatsVals);
-      seatDetails = {
-      seats: allSeatsVals,
-      seatType: ($('#seat-type option:selected').text()).includes("gold")? "gold" :"platinum",
-      seatPrice: price
-     };
-     console.log(seatDetails);
-     $.post('/seatDetails',{seatDetails:seatDetails});  //saving all the 'seatDetails' in the redis-session.
-    }
-  else
-    {
-      alert("Please select " + ($("#Numseats").val()) + " seats")
-    }
-
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach(function(seat, index) {
+      if (selectedSeats.indexOf(index) > -1) {
+        seat.classList.add("selected");
+      }
+    });
   }
 
-
-function myFunction() {
-  alert($("input:checked").length);
+  if (bookedSeats !== null && bookedSeats.length > 0) {
+    seats.forEach(function(seat, index) {
+      if (bookedSeats.indexOf(index) > -1) {
+        seat.classList.add("occupied");
+      }
+    });
+  }
 }
 
-/*
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-*/
+seatContainer.addEventListener("click", function(e) {
+  if (
+    e.target.classList.contains("seat") &&
+    !e.target.classList.contains("occupied")
+  ) {
+    e.target.classList.toggle("selected");
+    updateSelectedCount();
+  }
+});
 
-
-//$(":checkbox").click(function() {
-//  if ($("input:checked").length == ($("#Numseats").val())) {
-//    $(":checkbox").prop('disabled', true);
-//    $(':checked').prop('disabled', false);
-//  }
-//  else
-//    {
-////      $(":checkbox").prop('disabled', false);
-//        selectedSeats(seats);
-//    }
-//});
-
-function payments(){
-    // e.preventDefault();
-    window.location = "/payments";
-}
+// Initial count and total rendering
+updateSelectedCount();

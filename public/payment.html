@@ -35,7 +35,6 @@
                 <div class="sidebar-brand-icon">
                     <img src="img/logo-icon.png" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="img/logo.png" alt=""></div>
             </a>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -46,65 +45,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="events.html">
                     <i class="fas fa-fw fa-glass-cheers"></i>
-                    <span>Events</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="people.html">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>People</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="sports.html">
-                    <i class="fas fa-fw fa-futbol"></i>
-                    <span>Sports</span></a>
+                    <span>Food Court</span></a>
             </li>
             <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">Extra</div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-pager"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">All Pages</h6>
-                        <a class="collapse-item" href="movies.html">Movies</a>
-                        <a class="collapse-item" href="movies-detail.html">Movie Detail</a>
-                        <a class="collapse-item" href="events.html">Events</a>
-                        <a class="collapse-item" href="events-detail.html">Event Detail</a>
-                        <a class="collapse-item" href="people.html">People</a>
-                        <a class="collapse-item" href="people-detail.html">People Detail</a>
-                        <a class="collapse-item" href="sports.html">Sports</a>
-                        <a class="collapse-item" href="sports-detail.html">Sport Detail</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="offers.html">
-                    <i class="fas fa-fw fa-fire"></i>
-                    <span>Offers</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-clone"></i>
-                    <span>Extra Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
+            
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -148,14 +92,6 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item no-arrow mx-1">
-                            <a class="nav-link" href="offers.html">
-                                <i class="fas fa-fire fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger bg-gradient-danger">NEW</span>
-                            </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -238,7 +174,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Askbootstrap</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle" src="img/s4.png">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -286,9 +222,9 @@
                                           <div class="row">
                                               <div class="col-xs-12">
                                                   <div class="form-groups">
-                                                      <h4>Pay the total of <span class="badge badge-warning">500&#x20b9;</span> through:</h4>
+                                                    <h4>Pay through:</h4>
                                                       <label for="wallet">
-                                                          <input type="radio" id="wallet" name="payment" value="wallet"> Wallet(600$)
+                                                          <input type="radio" id="wallet" name="payment" value="wallet"> Wallet
                                                       </label>
                                                       <!-- <button type="button" class="btn btn-outline-info">600$</button> -->
                                                       <label for="cards">
@@ -308,7 +244,7 @@
                                                               <option value="2">456789011234</option>
                                                           </select>
                                                           <!-- <label for="cardNumber">Bal.</label> -->
-                                                          <button type="button" class="btn btn-outline-info">6000$</button>
+                                                          <button type="button" class="btn btn-outline-info"></button>
                                                       </div>
                                                   </div>
                                               </div>
@@ -400,16 +336,24 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const totalPrice = urlParams.get('total');
+      
+        // Display total price in the payment details section
+        document.getElementById('total-price').textContent = `$${totalPrice}`;
+      });
+    </script>
+      
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- slick Slider JS-->
     <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
     <script type="text/javascript" src="js/payments.js"></script>
-    <!-- Custom scripts for all pages-->
-    <!-- <script src="js/osahan.min.js"></script> -->
 </body>
 
 </html>
