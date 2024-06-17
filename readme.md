@@ -1,5 +1,6 @@
 # MoviezNow
-Demo Video Link :[ ](https://drive.google.com/file/d/1sS0x302H8KX9aN_EZ4bzMFe5xmZiVDHv/view)
+Demo Video Link : (https://drive.google.com/file/d/1sS0x302H8KX9aN_EZ4bzMFe5xmZiVDHv/view)
+
 Welcome to the Movie Seat Booking Application! This simple web application allows users to select movie seats and proceed to a payment page. It includes features like seat selection, pricing differentiation between stall and balcony seats, and dynamic calculation of total price based on seat selection.
 Features
 Seat Selection: Users can click on available seats to select them. Occupied seats and already selected seats are visually indicated.
